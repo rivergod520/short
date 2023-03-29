@@ -1,58 +1,83 @@
-
 <!doctype html>
-<html lang="zh-CN">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.2.4/animate.min.css">
-        <link rel="stylesheet" href="./static/editor.css">
-        <title>猫影视TV配置编辑器</title>
-</head>
+  <meta http-equiv="content-type" content="txt/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="站点地址/short/dist/css/bootstrap.min.css" integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous">
+  <title>短链</title>
+  <link rel="stylesheet" href="站点地址/short/styles.css">
+
+
 <body>
-<div id="loading"
-     style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-color: #000; opacity: 0.5; z-index:9999;">
-    <center style="position: absolute; top: 50%; left: 50%; color:#fff">请稍候...</center>
-</div>
-<div class="container">
-    <div class="page-header">
-        <h3>
-            配置编辑器 &nbsp;<small>本地记录依赖浏览器缓存，清空缓存将丢失记录</small>
-        </h3>
-    </div>
-    <div class="row">
-        <div class="btn-group btn-group-sm col-md-5" role="group">
-            <button type="button" class="btn btn-success" onclick="show_visual('999999')">可视</button>
-            <button type="button" class="btn btn-info" onclick="show_code('999999')">源码</button>
-            <button type="button" class="btn btn-warning" onclick="empty_diy('999999')">清空</button>
-            <button type="button" class="btn btn-primary" onclick="save_diy('999999')">保存</button>
+  <div class="card">
+    <h5 class="card-header">短链</h5>
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+
+
+     <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">长链</span>
         </div>
-        <div class="col-md-5">
-            <label class="btn btn-primary btn-sm">
-                配置转图片 <input type="file" onchange="toImg(event)" style="display: none;">
-            </label>
+        <input type="text" class="form-control" placeholder="请输入长链" id="text">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon2">短地址</span>
         </div>
+        <input type="text" class="form-customs-shorturl" placeholder="请输入短址 为空则随机" id="customShortURL">
+          <span class="input-group-text" id="basic-addon1">注意: 不支持中文字符，可以生成但不能成功跳转到长链！！</span>
+        </div>
+      </div>     
+      <div class="input-group mb-3">
+        <button class="btn btn-primary" type="button" onclick='shorturl()' id="searchbtn">点击生成</button>
+      </div>
+ 
+      <div class="card-footer">
+        <span> <a href="" target="_self"></a> </span>
+      </div>  
+      <div class="card-footer">
+        <span> <a href="https://m-ltv.github.io/T-V/JM/" target="_self"></a> </span>
+      </div>  
+      <div class="card-text">
+      
+        </div>
+      </div>
+      </div>
+       
+      <p id="notice"></p>             
     </div>
-    <h4></h4>
-    <form id="diy_cfg_jf_999999" style="display: none;"></form>
-    <textarea rows="30" class="form-control" id="diy_cfg_code_999999" style="margin-top: 10px; display: none;"></textarea>    
-</div>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">生成结果为：</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="result">生成失败：</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick='copyurl("result")' data-toggle="popover" data-placement="bottom" data-content="已成功复制">复制</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>    
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 背景音乐代码  开始 -->
+  <script>
+ 		localStorage.setItem('modelId', '2');  
+ 		localStorage.setItem('modelTexturesId', '3');
+ </script>
+<script src="https://api.itggg.cn/live2dnew/right/index.js"> </script>
+<script src="https://myhkw.cn/player/js/jquery.min.js" type="text/javascript"></script>
+<script src="https://myhkw.cn/api/player/demo" id="myhk" key="demo" skin="player" au="1" lr="r" m="1"></script>
+  <!-- 背景音乐代码  结束 -->
+</head>         
+  <script src="站点地址/short/dist/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+  <script src="站点地址/short/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="站点地址/short/dist/js/bootstrap.min.js" integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script>
+  <script src="站点地址/short/main.js" crossorigin="anonymous"></script>
 </body>
-<script src="//cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/bootstrap-notify.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/bootbox@4.4.0/bootbox.min.js"></script>
-<script src="./static/index.js"></script>
-<script src="//cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/jquery-ui-dist@1.12.1/jquery-ui.min.js"></script>
-<script src="//cdn.jsdelivr.net/gh/sytelus/CryptoJS@master/components/core-min.js"></script>
-<script src="//cdn.jsdelivr.net/gh/sytelus/CryptoJS@master/components/cipher-core-min.js"></script>
-<script src="//cdn.jsdelivr.net/gh/sytelus/CryptoJS@master/components/aes-min.js"></script>
-<script src="//cdn.jsdelivr.net/gh/sytelus/CryptoJS@master/components/mode-ecb-min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
-<script src="./static/jsonform.js"></script>
-<script src="./static/jsv.js"></script>
-<script src="./static/editor.js"></script>
-<script src="./static/jsonlint.js"></script>
 </html>
