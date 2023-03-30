@@ -154,7 +154,7 @@ const config = {
     /* 查KV中的password对应的值 */
     const password_value = await LINKS.get("password");
     if (path==password_value){
-      const html= await fetch("https://lystv.github.io/short/"+config.theme+"/fm.html")
+      const html= await fetch("https://rivergod520.github.io/short/"+config.theme+"/index.html")
       
       return new Response(await html.text(), {
       headers: {
